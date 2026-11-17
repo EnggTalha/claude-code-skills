@@ -1,0 +1,13 @@
+{
+  "name": "talha-skills",
+  "version": "0.1.0",
+  "description": "A growing library of detailed Claude Code skills for AI/LLM engineering, security, backend/DevOps and everyday dev workflow. One new skill every day.",
+  "author": {
+    "name": "Talha Ahmed",
+    "url": "https://github.com/EnggTalha"
+  },
+  "homepage": "https://github.com/EnggTalha/claude-code-skills",
+  "repository": "https://github.com/EnggTalha/claude-code-skills",
+  "license": "MIT",
+  "keywords": ["skills", "ai", "llm", "rag", "security", "fastapi", "devops", "code-review"]
+}

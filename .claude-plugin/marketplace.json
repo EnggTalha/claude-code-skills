@@ -1,0 +1,17 @@
+{
+  "name": "talha-skills",
+  "owner": {
+    "name": "Talha Ahmed",
+    "url": "https://github.com/EnggTalha"
+  },
+  "metadata": {
+    "description": "Detailed Claude Code skills, one new skill every day."
+  },
+  "plugins": [
+    {
+      "name": "talha-skills",
+      "source": "./",
+      "description": "Detailed Claude Code skills for AI/LLM engineering, security, backend/DevOps and dev workflow."
+    }
+  ]
+}
