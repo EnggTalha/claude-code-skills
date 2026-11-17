@@ -34,7 +34,7 @@ try {
     $prompt = @'
 You maintain this repository (EnggTalha/claude-code-skills), a library of detailed Claude Code skills.
 Follow tools/daily-skill-prompt.md exactly: add exactly ONE new detailed skill (next unchecked ROADMAP.md item, rotating categories), write it to the CONTRIBUTING.md standard using templates/SKILL.template.md and the existing skills as the quality bar, run `python tools/validate_skills.py` until it prints OK, tick the item in ROADMAP.md, commit on a new branch skill/<YYYY-MM-DD>-<name>, push that branch, and open a PR with `gh pr create` titled "Add skill: <name>".
-Never push to main, never merge, never edit other skills, never add secrets, .vscode/tasks.json or workflow files. End by printing the PR URL.
+Never add Co-Authored-By or Generated-with lines to commits or PRs. Never push to main, never merge, never edit other skills, never add secrets, .vscode/tasks.json or workflow files. End by printing the PR URL.
 '@
 
     # Prompt goes in via stdin: PowerShell 5.1 mangles double quotes inside native-command arguments

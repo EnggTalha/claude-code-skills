@@ -24,5 +24,6 @@ You are adding **exactly one** new Claude Code skill to this repository today, t
    - PR title: `Add skill: <name>`
    - PR body: what the skill does, when it triggers, the category, a short list of the sections, and the validator output.
    - Do **not** push to `main`, merge, or change any other skill.
+   - Do **not** add `Co-Authored-By` trailers or "Generated with Claude Code" lines to commits or the PR body.
 
 If anything blocks you (validation can't pass, or there's no roadmap item left), open the PR anyway as a draft and explain the problem in the body.
