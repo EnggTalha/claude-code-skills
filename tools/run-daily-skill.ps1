@@ -2,7 +2,8 @@
 # Started daily by the Windows scheduled task "daily-claude-skill" (see README).
 # Uses the Claude Code binary bundled with the VS Code extension, so no separate install is needed.
 
-$ErrorActionPreference = 'Stop'
+# 'Continue': git and gh write normal progress to stderr, which PowerShell 5.1 would otherwise treat as fatal
+$ErrorActionPreference = 'Continue'
 $repo   = Split-Path -Parent $PSScriptRoot
 $logDir = Join-Path (Split-Path -Parent $repo) 'claude-code-skills-logs'
 New-Item -ItemType Directory -Force $logDir | Out-Null
@@ -21,13 +22,14 @@ try {
     Write-Output "Using $claude"
 
     Set-Location $repo
-    git checkout main
-    git pull --ff-only
+    git checkout main 2>&1 | Out-Null
+    git pull --ff-only 2>&1 | Write-Output
+    if ($LASTEXITCODE -ne 0) { throw "git pull failed" }
 
     # Skip if a skill PR is already open today (e.g. the laptop woke up twice)
     $today = Get-Date -Format 'yyyy-MM-dd'
-    $open = gh pr list --state open --json headRefName --jq "[.[] | select(.headRefName | startswith(`"skill/$today`"))] | length"
-    if ($open -ne '0') { Write-Output "A skill PR for $today already exists, skipping."; return }
+    $branches = gh pr list --state all --limit 20 --json headRefName | ConvertFrom-Json | ForEach-Object { $_.headRefName }
+    if ($branches | Where-Object { $_ -like "skill/$today-*" }) { Write-Output "A skill PR for $today already exists, skipping."; return }
 
     $prompt = @'
 You maintain this repository (EnggTalha/claude-code-skills), a library of detailed Claude Code skills.
@@ -35,12 +37,13 @@ Follow tools/daily-skill-prompt.md exactly: add exactly ONE new detailed skill (
 Never push to main, never merge, never edit other skills, never add secrets, .vscode/tasks.json or workflow files. End by printing the PR URL.
 '@
 
-    & $claude -p $prompt `
+    # Prompt goes in via stdin: PowerShell 5.1 mangles double quotes inside native-command arguments
+    $prompt | & $claude -p `
         --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash(git:*)" "Bash(gh pr:*)" "Bash(python:*)" "Bash(python3:*)" "Bash(ls:*)" "Bash(mkdir:*)" "Bash(date:*)" `
         --max-turns 60
 }
 finally {
     Set-Location $repo
-    git checkout main 2>$null
+    git checkout main 2>&1 | Out-Null
     Stop-Transcript | Out-Null
 }
