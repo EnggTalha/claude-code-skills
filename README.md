@@ -47,7 +47,16 @@ Skills never contain secrets or anything that runs automatically when a folder i
 
 ## How the daily skill works
 
-A scheduled Claude Code routine runs every morning. It picks the next idea from [ROADMAP.md](ROADMAP.md), writes the skill to the standard in [CONTRIBUTING.md](CONTRIBUTING.md), validates it, and opens a pull request. Every skill is reviewed by a human before it's merged. The routine's instructions are versioned in [`tools/daily-skill-prompt.md`](tools/daily-skill-prompt.md).
+A Windows scheduled task runs Claude Code headless every morning ([`tools/run-daily-skill.ps1`](tools/run-daily-skill.ps1)). Claude picks the next idea from [ROADMAP.md](ROADMAP.md), writes the skill to the standard in [CONTRIBUTING.md](CONTRIBUTING.md), validates it, and opens a pull request. Every skill is reviewed by a human before it's merged. The instructions are versioned in [`tools/daily-skill-prompt.md`](tools/daily-skill-prompt.md).
+
+To set up the same schedule on your own machine (PowerShell):
+
+```powershell
+$a = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -ExecutionPolicy Bypass -File `"D:\claude-code-skills\tools\run-daily-skill.ps1`""
+$t = New-ScheduledTaskTrigger -Daily -At 9am
+$s = New-ScheduledTaskSettingsSet -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 1)
+Register-ScheduledTask -TaskName "daily-claude-skill" -Action $a -Trigger $t -Settings $s
+```
 
 ## Contributing
 
