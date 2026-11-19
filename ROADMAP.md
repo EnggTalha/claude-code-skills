@@ -44,7 +44,7 @@ Format: `- [ ] skill-name: one-line idea`
 
 - [x] fastapi-endpoint: add a validated, tested FastAPI endpoint
 - [ ] dockerize-python-app: Dockerfile + compose for a FastAPI/Flask app, with a small image size
-- [ ] mongodb-index-tuning: find slow queries with explain() and add the right indexes
+- [x] mongodb-index-tuning: find slow queries with explain() and add the right indexes
 - [ ] deploy-fly-io: deploy a Python API to Fly.io with secrets and health checks
 - [ ] vercel-nextjs-deploy: deploy a Next.js frontend with env vars and preview deployments
 - [ ] background-jobs: move slow work into Celery/RQ/arq with retries
