@@ -61,7 +61,7 @@ Format: `- [ ] skill-name: one-line idea`
 ## Dev workflow (`dev-workflow`)
 
 - [x] pr-review: review a PR or diff and rank findings by severity
-- [ ] write-tests-for-legacy-code: add characterization tests before refactoring
+- [x] write-tests-for-legacy-code: add characterization tests before refactoring
 - [ ] debug-failing-test: a systematic loop to reproduce, isolate and fix
 - [ ] git-branch-cleanup: find and safely delete merged and stale branches
 - [ ] conventional-commits: write clear commit messages and changelogs
