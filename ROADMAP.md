@@ -7,7 +7,7 @@ Format: `- [ ] skill-name: one-line idea`
 ## AI / LLM engineering (`ai-llm`)
 
 - [x] rag-pipeline-review: review a RAG pipeline end to end and fix retrieval first
-- [ ] prompt-eval-harness: build a small JSONL eval set and a scorer to compare prompts and models
+- [x] prompt-eval-harness: build a small JSONL eval set and a scorer to compare prompts and models
 - [ ] livekit-voice-agent: scaffold a LiveKit voice agent (STT → LLM → TTS) with SIP inbound/outbound
 - [ ] langgraph-agent: build a tool-using LangGraph agent with state, retries and human-in-the-loop
 - [ ] llm-cost-audit: find token waste (long prompts, no caching, wrong model) and estimate savings
